@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
-  
+  resources :schools
+  resources :classrooms
 
-  get 'classrooms/index'
-
-  get 'classrooms/show'
-
-  get 'classrooms/new'
-
-  get 'classrooms/edit'
-
-  resources :schools do
-  	resources :classrooms
-  end
-
-   root 'schools#index'
+  root 'schools#index'
 end

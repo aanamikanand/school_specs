@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe School, type: :model do
+  let(:school) { FactoryGirl.create(:school) }
+
   describe 'validations' do
   	it { should validate_presence_of :name }
   	it { should validate_presence_of :year_built }
@@ -9,9 +11,6 @@ RSpec.describe School, type: :model do
 
   describe '#name_year_built' do
   	it 'returns name and year_built message' do
-  		school = School.create(	name: 'Devpoint labs',
-  														year_built: '1990',
-  														rating: 10	)
   		expect(school.name_year_built).to eq("#{school.name} is built in: #{school.year_built}")
   	end
   end
