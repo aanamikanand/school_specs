@@ -1,8 +1,9 @@
 class ClassroomsController < ApplicationController
-	before_action :classroom, only: [:show, :edit, :update, :destroy]
+	before_action :school
+  before_action :classroom, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@classrooms = Classroom.all
+  	@classrooms = @school.classrooms
   end
 
   def show
@@ -13,9 +14,8 @@ class ClassroomsController < ApplicationController
   end
 
   def create
-  	if @classroom = Classroom.create(classroom_params)
-  		flash[:success] = "Classroom Created!"
-  		redirect_to classroom_path(@classroom)
+  	if @classroom = @school.classrooms.create(classroom_params)
+  		redirect_to school_classrooms_path(@classroom)
   	else
   		render :new
   	end
@@ -26,7 +26,7 @@ class ClassroomsController < ApplicationController
 
   def update
   	if @classroom.update(classroom_params)
-  	redirect_to classroom_path(@classroom)
+  	redirect_to school_classroom_path(@school, @classroom)
   else
   	render :edit
   end
@@ -34,16 +34,20 @@ class ClassroomsController < ApplicationController
 
   def destroy
   	@classroom.destroy
-  	redirect_to classrooms_path
+  	redirect_to school_classrooms_path(@school)
   end
 
   private
 
   def classroom
-  	@classroom =Classroom.find(params[:id])
+  	@classroom = @school.classrooms.find(params[:id])
   end
 
   def classroom_params
   	params.require(:classroom).permit(:name, :code, :active)
+  end
+
+  def school
+    @school = School.find(params[:school_id])
   end
 end

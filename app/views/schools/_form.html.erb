@@ -1,0 +1,13 @@
+<%= form_for @school do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :year_built %>
+  <%= f.text_field :year_built %>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, [5,4,3,2,1],{}, class: 'browser-default' %>
+
+  <%= link_to 'Back Out', :back, id: 'cancel-school', class: 'btn red' %>
+  <%= f.submit nil, id: 'submit-school-btn', class: 'btn' %>
+<% end %>

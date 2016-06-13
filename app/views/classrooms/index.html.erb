@@ -1,2 +1,11 @@
-<h1>Classrooms#index</h1>
-<p>Find me in app/views/classrooms/index.html.erb</p>
+<h1>Classrooms In School: <%= @school.name %></h1>
+<br />
+
+<% @classrooms.each do |classroom| %>
+  <div>
+    <%= link_to classroom.name, school_classroom_path(@school, classroom) %>
+  </div>
+<% end %>
+
+<%= link_to 'Create Classrooms', new_school_classroom_path(@school), class: 'btn' %>
+<%= link_to 'School', schools_path(@school), class: 'btn' %>

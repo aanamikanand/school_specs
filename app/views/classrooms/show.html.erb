@@ -1,2 +1,23 @@
-<h1>Classrooms#show</h1>
-<p>Find me in app/views/classrooms/show.html.erb</p>
+<h1>Classroom: <%= @classroom.name %></h1>
+
+<ul>
+  <li>
+    School: <%= @school.name %>
+  </li>
+  <li>
+    code: <%= @classroom.code %>
+  </li>
+  <li>
+   Active: <%= @classroom.active %>
+  </li>
+</ul>
+
+<div>
+  <%= link_to 'Edit', edit_school_classroom_path(@school, @classroom), class: 'btn' %>
+  <%= link_to 'Delete', school_classroom_path(@school, @classroom), method: :delete, class: 'btn red' %>
+</div>
+
+<hr />
+<%= link_to 'All Classrooms', school_classrooms_path(@school), class: 'btn' %>
+
+<%= link_to 'School', schools_path(@school), class: 'btn' %>

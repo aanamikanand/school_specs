@@ -1,2 +1,17 @@
-<h1>Schools#show</h1>
-<p>Find me in app/views/schools/show.html.erb</p>
+<h1 id='school-header'><%= @school.name %></h1>
+<h3>
+  <%= pluralize(@school.classrooms.count, 'Classroom', 'Classrooms') %> In The School
+</h3>
+<hr />
+<br/>
+
+<div>
+  <%= link_to 'Edit', edit_school_path(@school), class: 'btn' %>
+  <%= link_to 'Delete', school_path(@school), method: :delete, class: 'btn red' %>
+</div>
+<br/>
+<br/>
+
+
+<%= link_to 'School', schools_path, class: 'btn red' %>
+<%= link_to 'Classrooms', school_classrooms_path(@school), class: 'btn' %>
